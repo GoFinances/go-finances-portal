@@ -33,7 +33,7 @@ const Import: React.FC = () => {
         }),
       );
 
-      history.goBack();
+      history.push("/dashboard")
     } catch (err) {
       console.log(err.response.error);
     }
