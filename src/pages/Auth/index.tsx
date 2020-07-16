@@ -53,8 +53,8 @@ const Auth: React.FC = () => {
     async ({ email, password }: SignInFormData) => {
       try {
         if (
-          (!errors.email.invalid && !errors.email.read) ||
-          (!errors.password.invalid && !errors.password.read)
+          (!errors.email.invalid || !errors.email.read) ||
+          (!errors.password.invalid || !errors.password.read)
         ) return
 
         await signIn({ email: email, password: password });

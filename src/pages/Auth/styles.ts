@@ -16,7 +16,7 @@ export const Container = styled.div`
 
 export const Login = styled.div`
   width: 400px;
-  height: 500px;
+  height: 520px;
   background: #FFF;
   border-radius: 5px;
   top: 100px;
