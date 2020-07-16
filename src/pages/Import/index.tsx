@@ -24,7 +24,6 @@ const Import: React.FC = () => {
 
   async function handleUpload(): Promise<void> {
     try {
-      const data = new FormData();
       await Promise.all(
         uploadedFiles.map(file => {
           const data = new FormData();

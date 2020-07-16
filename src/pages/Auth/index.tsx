@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { TextField } from "@material-ui/core";
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // VALIDACAO
 import validateEmail from '../../utils/validate/validateEmail';
@@ -29,7 +29,6 @@ interface SignInFormData {
 
 
 const Auth: React.FC = () => {
-  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({
@@ -67,7 +66,7 @@ const Auth: React.FC = () => {
         });
       }
     },
-    [signIn, addToast],
+    [signIn, addToast, errors],
   );
 
   const handleChange = (e: any) => {
@@ -128,7 +127,7 @@ const Auth: React.FC = () => {
               id="password"
               error={errors.password.invalid}
               helperText={errors.password.message}
-              onKeyPress={(e) => e.key == "Enter" ? handleSubmit({ email, password }) : null}
+              onKeyPress={(e) => (e.key === "Enter") ? handleSubmit({ email, password }) : null}
             />
 
             <ContainerText textAlign="right">

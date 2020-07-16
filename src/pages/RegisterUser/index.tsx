@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { TextField } from "@material-ui/core";
 import { useHistory } from 'react-router';
 
@@ -73,7 +73,7 @@ const RegisterUser: React.FC = () => {
         setPassword(value);
         break;
       case "confirmPassword":
-        errors.confirmPassword.invalid = !(password == value)
+        errors.confirmPassword.invalid = !(password === value)
         errors.confirmPassword.message = (errors.confirmPassword.invalid && errors.confirmPassword.read) ? "As senhas não conferem." : "";
         errors.confirmPassword.read = true;
         setConfirmPassword(value);
@@ -98,8 +98,8 @@ const RegisterUser: React.FC = () => {
         const response = await api.post("users", { name, email, password });
         const { status } = response;
 
-        if (status != 200)
-          throw "Internal Serve Error"
+        if (status !== 200)
+          throw new Error("Internal Serve Error")
 
         addToast({
           type: 'success',
@@ -116,7 +116,18 @@ const RegisterUser: React.FC = () => {
         });
       }
     },
-    [],
+    [
+      addToast, 
+      history, 
+      errors.email.invalid, 
+      errors.password.invalid, 
+      errors.name.invalid, 
+      errors.confirmPassword.invalid,
+      errors.email.read, 
+      errors.password.read, 
+      errors.name.read, 
+      errors.confirmPassword.read
+    ],
   );
 
   return (
