@@ -60,7 +60,11 @@ export const ButtonForm = styled.button<LayoutProps>`
   border-radius: 5px;
   text-transform: uppercase;
 
-  &:hover, :focus {
+  :disabled{
+    cursor: initial;
+  }
+
+  &:hover, :focus , :disabled{
     color: #FFF;
     background: ${lighten(0.08, '#5636D3')};
   }
