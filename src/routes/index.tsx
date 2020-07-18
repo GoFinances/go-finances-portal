@@ -9,14 +9,15 @@ import Auth from '../pages/Auth';
 import RegisterUser from '../pages/RegisterUser';
 
 
-const Routes: React.FC = () => (
-  <Switch>
+const Routes: React.FC = () => {
+
+  return (<Switch>
     <Route path="/" exact component={Auth} />
     <Route path="/login" component={Auth} />
     <Route path="/cadastro-usuario" component={RegisterUser} />
     <Route path="/dashboard" component={Dashboard} isPrivate={true} />
     <Route path="/import" component={Import} isPrivate={true} />
-  </Switch>
-);
+  </Switch>)
+}
 
 export default Routes;

@@ -17,18 +17,18 @@ export const Container = styled.div`
 export const Login = styled.div`
   width: 400px;
   height: 520px;
-  background: #FFF;
+  background: ${p => p.theme.colors.textSecundary};
   border-radius: 5px;
   top: 100px;
   position: absolute;
-  border: 1px solid #5636D3;
+  border: 1px solid ${p => p.theme.colors.primary};
 
 
   .container-logo{
     display: flex;
     justify-content: center;
     height: 150px;
-    background: #5636D3;
+    background: ${p => p.theme.colors.primary};
     img {
       width: 345px
     }
@@ -46,7 +46,7 @@ export const ContainerText = styled.div<LayoutProps>`
   width: 90%;
   margin: 10px;
   font-size: small;
-  text-align: ${p => p.textAlign || "center"}
+  text-align: ${p => p.textAlign || "center"};
 `;
 
 
@@ -54,9 +54,9 @@ export const SubmitLogin = styled.button`
   margin-top: 15px;
   width: 90%;
   height: 60px;
-  background: #5636D3;
-  color: #FFF;
-  border: 1px solid #FFF;
+  background: ${p => p.theme.colors.primary};
+  color: ${p => p.theme.colors.textSecundary};
+  border: 1px solid ${p => p.theme.colors.textSecundary};
   border-radius: 5px;
   text-transform: uppercase;
 
@@ -65,7 +65,7 @@ export const SubmitLogin = styled.button`
   }
 
   &:hover, :focus, :disabled {
-    color: #FFF;
-    background: ${lighten(0.08, '#5636D3')};
+    color: ${p => p.theme.colors.textSecundary};
+    background: ${p => lighten(0.08, p.theme.colors.primary)};
   }
 `;

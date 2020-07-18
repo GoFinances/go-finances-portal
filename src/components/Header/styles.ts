@@ -5,7 +5,7 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  background: #5636d3;
+  background: ${p => p.theme.colors.primary};
   padding: 30px 0;
 
   header {
@@ -18,7 +18,7 @@ export const Container = styled.div<ContainerProps>`
 
     nav {
       a {
-        color: #fff;
+        color: ${p => p.theme.colors.textSecundary};;
         text-decoration: none;
         font-size: 16px;
         transition: opacity 0.2s;

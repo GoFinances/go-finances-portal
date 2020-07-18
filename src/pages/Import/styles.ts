@@ -12,12 +12,12 @@ export const Title = styled.h1`
   font-weight: 500;
   font-size: 36px;
   line-height: 54px;
-  color: #363f5f;
+  color: ${p => p.theme.colors.text};
   text-align: center;
 `;
 
 export const ImportFileContainer = styled.section`
-  background: #fff;
+  background: ${p => p.theme.colors.background};
   margin-top: 40px;
   border-radius: 5px;
   padding: 64px;

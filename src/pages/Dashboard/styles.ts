@@ -23,11 +23,12 @@ export const CardContainer = styled.section`
   margin-top: -150px;
 `;
 
-export const Card = styled.div`
-  background: ${({ total }: CardProps): string => (total ? '#FF872C' : '#fff')};
+export const Card = styled.div<CardProps>`
   padding: 22px 32px;
   border-radius: 5px;
-  color: ${({ total }: CardProps): string => (total ? '#fff' : '#363F5F')};
+  background: ${p => (p.total ? p.theme.colors.card_bg_secondary : p.theme.colors.card_bg_primary)};
+  color: ${p => (p.total ? p.theme.colors.textSecundary : p.theme.colors.text)};
+  border: 1px solid ${p => p.theme.colors.card_border_primary};
 
   header {
     display: flex;
@@ -55,7 +56,7 @@ export const TableContainer = styled.section`
     border-spacing: 0 8px;
 
     th {
-      color: #969cb3;
+      color: ${p => p.theme.colors.text};
       font-weight: normal;
       padding: 20px 32px;
       text-align: left;
@@ -66,21 +67,21 @@ export const TableContainer = styled.section`
     td {
       padding: 20px 32px;
       border: 0;
-      background: #fff;
+      background: ${p => p.theme.colors.transactions_bg};
       font-size: 16px;
       font-weight: normal;
-      color: #969cb3;
+      color: ${p => p.theme.colors.text};
 
       &.title {
-        color: #363f5f;
+        color: ${p => p.theme.colors.transactions_title};
       }
 
       &.income {
-        color: #12a454;
+        color: ${p => p.theme.colors.transactions_income};
       }
 
       &.outcome {
-        color: #e83f5b;
+        color: ${p => p.theme.colors.transactions_outcome};
       }
     }
 

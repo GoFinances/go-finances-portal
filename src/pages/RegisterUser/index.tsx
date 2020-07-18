@@ -88,11 +88,12 @@ const RegisterUser: React.FC = () => {
   const handleSubmit = useCallback(
     async ({ name, email, password }: ICreateUser) => {
       try {
+
         if (
-          (!errors.email.invalid || !errors.email.read) ||
-          (!errors.password.invalid || !errors.password.read) ||
-          (!errors.name.invalid || !errors.name.read) ||
-          (!errors.confirmPassword.invalid || !errors.confirmPassword.read)
+          (errors.email.invalid || !errors.email.read) ||
+          (errors.password.invalid || !errors.password.read) ||
+          (errors.name.invalid || !errors.name.read) ||
+          (errors.confirmPassword.invalid || !errors.confirmPassword.read)
         ) return
 
         const response = await api.post("users", { name, email, password });

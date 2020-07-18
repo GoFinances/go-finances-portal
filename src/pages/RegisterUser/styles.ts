@@ -54,9 +54,9 @@ export const ButtonForm = styled.button<LayoutProps>`
   margin-top: 15px;
   width: 90%;
   height: 60px;
-  background: ${p => (!p.themeReverse ? "#5636D3" : "#FFF")};
-  color: ${p => (!p.themeReverse ? "#FFF" : "#5636D3")};
-  border: 1px solid ${p => (!p.themeReverse ? "#FFF" : "#5636D3")};
+  background: ${p => (!p.themeReverse ? p.theme.colors.primary : p.theme.colors.textSecundary)};
+  color: ${p => (!p.themeReverse ? p.theme.colors.textSecundary : p.theme.colors.primary)};
+  border: 1px solid ${p => (!p.themeReverse ? p.theme.colors.textSecundary : p.theme.colors.primary)};
   border-radius: 5px;
   text-transform: uppercase;
 
@@ -65,7 +65,7 @@ export const ButtonForm = styled.button<LayoutProps>`
   }
 
   &:hover, :focus , :disabled{
-    color: #FFF;
-    background: ${lighten(0.08, '#5636D3')};
+    color: ${p => p.theme.colors.textSecundary};
+    background: ${p => lighten(0.08, p.theme.colors.primary)};
   }
 `;
