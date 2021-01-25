@@ -21,13 +21,13 @@ const Settings: React.FC = () => {
   const [categories, setCategories] = useState<ICategories[]>([]);
 
   useEffect(() => {
-    async function loadCategories(): Promise<void> {
-      api.get("/categories").then(response => {
-        const { categories } = response.data;
-        setCategories(categories);
-      });
-    }
-    loadCategories();
+    // async function loadCategories(): Promise<void> {
+    //   api.get("/categories").then(response => {
+    //     const { categories } = response.data;
+    //     setCategories(categories);
+    //   });
+    // }
+    // loadCategories();
   }, []);
 
   return (
