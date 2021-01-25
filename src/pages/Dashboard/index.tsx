@@ -43,6 +43,8 @@ const Dashboard: React.FC = () => {
     }
     loadTransactions();
   }, []);
+
+
   return (<>
     <Header />
     <Container>

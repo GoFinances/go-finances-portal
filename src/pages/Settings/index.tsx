@@ -1,21 +1,34 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   FiPlus
 } from 'react-icons/fi';
 
+import api from '../../services/api';
+
 import Header from '../../components/Header';
-import { Container, TableContainer, BtnAddNewSetting } from './styles';
 import ModalAddNewSetting from '../../components/ModalAddNewSetting';
 
+import { Container, TableContainer, BtnAddNewSetting } from './styles';
 
-interface ISettings {
+
+interface ICategories {
   id: number
 }
 
 const Settings: React.FC = () => {
   const [openModal, setOpenModal] = useState(false);
   const toggleModal = useCallback(() => setOpenModal(openModal ? false : true), [openModal]);
-  const [settings, setSettings] = useState<ISettings[]>([]);
+  const [categories, setCategories] = useState<ICategories[]>([]);
+
+  useEffect(() => {
+    async function loadCategories(): Promise<void> {
+      api.get("/categories").then(response => {
+        const { categories } = response.data;
+        setCategories(categories);
+      });
+    }
+    loadCategories();
+  }, []);
 
   return (
     <>
@@ -38,13 +51,13 @@ const Settings: React.FC = () => {
             </thead>
 
             <tbody>
-              {settings.map(setting => (
-                <tr key={setting.id}>
-                  <td className="title"></td>
-                  <td className="" ></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+              {categories.map(category => (
+                <tr key={category.id}>
+                  <td className="title">1</td>
+                  <td className="" >1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
                 </tr>
               ))}
             </tbody>
