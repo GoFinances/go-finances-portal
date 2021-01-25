@@ -16,26 +16,34 @@ interface HeaderProps {
 }
 
 
-const styledLink = {
-  borderBottom: '2px solid #ff872c',
-};
 
 const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => {
   const { colors, title } = useContext(ThemeContext);
-  const { toggleTheme } = useTheme();
+  const { toggleTheme, theme } = useTheme();
   const { signOut } = useAuth();
+
+  const styledLink = {
+    borderBottom: `2px solid ${theme.title === 'light' ? theme.colors.orange : theme.colors.dark}`,
+  };
+
 
   return (
     <Container size={size}>
       <header>
         <img src={Logo} alt="GoFinances" />
         <nav>
-          <nav style={{ display: "flex", }}>
+          <nav style={{ display: "flex" }}>
             <NavLink to="/dashboard" exact activeStyle={styledLink}>
               Listagem
             </NavLink>
+            <NavLink to="/nova-transacao" exact activeStyle={styledLink}>
+              Nova Transação
+            </NavLink>
             <NavLink to="/import" exact activeStyle={styledLink}>
-              Importar
+              Importação
+            </NavLink>
+            <NavLink to="/configuracao" exact activeStyle={styledLink}>
+              Configuracão
             </NavLink>
             <NavLink to="/" onClick={() => signOut()} exact activeStyle={styledLink}>
               Logout
@@ -49,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => {
                 height={10}
                 width={40}
                 handleDiameter={20}
-                offColor={colors.secundary}
+                offColor={colors.primary}
                 onColor={colors.background}
               />
             </div>

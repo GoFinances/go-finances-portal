@@ -1,23 +1,33 @@
 export default {
   title: 'light',
-
   colors: {
+    background: '#F0F2F5',
     primary: '#5636d3',
-    secundary: '#FF872C',
+    grey: '#363F5F',
+    orange: '#FF872C',
+    yellow: '#FFD700',
+    purple: '#8A2BE2',
+    white: '#FFF',
+    green: '#00FF7F',
+    dark: '#000',
+    red: '#e83f5b',
 
-    background: "#F0F2F5",
-    text: "#363F5F",
-    textSecundary: "#FFF",
+    card_bg: '#FFF',
+    card_text: '#000'
 
-    card_bg_primary: "#FFF",
-    card_bg_secondary: "#FF872C",
-    card_border_primary: "#5636d3",
-
-    transactions_bg: "#FFF",
-    transactions_title: "#363f5f",
-    transactions_income: "#12a454",
-    transactions_outcome: "#e83f5b"
-
-
+  },
+  fontSizes: {
+    default: '1.8rem',
+    huge: '2.4rem',
+    small: '1.6rem',
+    tiny: '2.6rem',
+  },
+  spacing: {
+    default: '1.6rem',
+    vertical: '1.6rem 0',
+    horizontal: '0 1.6rem',
+    huge: '3.2rem'
   }
 }
+
+

@@ -4,8 +4,11 @@ import { ThemeProvider, DefaultTheme } from 'styled-components'
 import usePersistedState from './usePersistedState';
 import light from '../styles/themes/light';
 import dark from '../styles/themes/dark';
+import Theme from '../styles/themes/theme';
+
 
 interface ThemeContextData {
+  theme: Theme;
   toggleTheme(): void;
 }
 
@@ -20,7 +23,7 @@ const ThemePortalProvider: React.FC = ({ children }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <ThemeContext.Provider value={{ toggleTheme }} >
+      <ThemeContext.Provider value={{ toggleTheme, theme }} >
         {children}
       </ThemeContext.Provider>
     </ThemeProvider>

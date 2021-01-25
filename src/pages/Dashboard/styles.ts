@@ -11,11 +11,6 @@ export const Container = styled.div`
   padding: 40px 20px;
 `;
 
-export const Title = styled.h1`
-  font-size: 48px;
-  color: #3a3a3a;
-`;
-
 export const CardContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -26,9 +21,9 @@ export const CardContainer = styled.section`
 export const Card = styled.div<CardProps>`
   padding: 22px 32px;
   border-radius: 5px;
-  background: ${p => (p.total ? p.theme.colors.card_bg_secondary : p.theme.colors.card_bg_primary)};
-  color: ${p => (p.total ? p.theme.colors.textSecundary : p.theme.colors.text)};
-  border: 1px solid ${p => p.theme.colors.card_border_primary};
+  background: ${p => (!p.total ? p.theme.colors.card_bg : p.theme.colors.orange)};
+  color: ${p => (!p.total ? p.theme.colors.card_text : p.theme.colors.dark)};
+  border: 1px solid ${p => (!p.total ? p.theme.colors.card_bg : p.theme.colors.dark)};
 
   header {
     display: flex;
@@ -48,15 +43,20 @@ export const Card = styled.div<CardProps>`
   }
 `;
 
+export const MessageEmpty = styled.div`
+  text-align: center;
+  padding: 100px;
+`;
+
 export const TableContainer = styled.section`
-  margin-top: 64px;
+  margin-top: 20px;
 
   table {
     width: 100%;
     border-spacing: 0 8px;
 
     th {
-      color: ${p => p.theme.colors.text};
+      color: ${p => p.theme.title === 'light' ? p.theme.colors.dark : p.theme.colors.orange};
       font-weight: normal;
       padding: 20px 32px;
       text-align: left;
@@ -64,33 +64,55 @@ export const TableContainer = styled.section`
       line-height: 24px;
     }
 
-    td {
-      padding: 20px 32px;
-      border: 0;
-      background: ${p => p.theme.colors.transactions_bg};
-      font-size: 16px;
-      font-weight: normal;
-      color: ${p => p.theme.colors.text};
+    tbody {
 
-      &.title {
-        color: ${p => p.theme.colors.transactions_title};
-      }
+      tr {
 
-      &.income {
-        color: ${p => p.theme.colors.transactions_income};
-      }
+        td {
+          padding: 20px 32px;
+          background: ${p => p.theme.title === 'light' ? p.theme.colors.white : p.theme.colors.orange};
+          font-size: 16px;
+          font-weight: normal;
+          color: ${p => p.theme.colors.dark};
 
-      &.outcome {
-        color: ${p => p.theme.colors.transactions_outcome};
+          &.title {
+            font-weight: bold;
+            color: ${p => p.theme.colors.dark};
+          }
+
+          &.income {
+            color: ${p => p.theme.colors.green};
+          }
+
+          &.outcome {
+            color: ${p => p.theme.colors.red};
+          }
+
+          &:first-child {
+            color: ${p => p.theme.colors.dark};
+
+            &.income {
+              font-weight: bold;
+              border-left: 5px solid ${p => p.theme.colors.green};
+            }
+
+            &.outcome {
+              font-weight: bold;
+              border-left: 5px solid ${p => p.theme.colors.red};
+            }
+
+            border-left: 5px solid red;
+            border-radius: 8px 0 0 8px;
+          }
+
+          &:last-child {
+            border-radius: 0 8px 8px 0;
+          }
+
+        }
+
       }
     }
 
-    td:first-child {
-      border-radius: 8px 0 0 8px;
-    }
-
-    td:last-child {
-      border-radius: 0 8px 8px 0;
-    }
   }
 `;

@@ -18,7 +18,7 @@ export const Container = styled.div<ContainerProps>`
 
     nav {
       a {
-        color: ${p => p.theme.colors.textSecundary};;
+        color: ${p => p.theme.title === 'light' ? p.theme.colors.white : p.theme.colors.dark};
         text-decoration: none;
         font-size: 16px;
         transition: opacity 0.2s;

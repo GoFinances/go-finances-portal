@@ -9,7 +9,7 @@ import Header from '../../components/Header';
 import formatValue from '../../utils/formatValue';
 import formatDate from '../../utils/formatDate';
 
-import { Container, CardContainer, Card, TableContainer } from './styles';
+import { Container, CardContainer, Card, TableContainer, MessageEmpty } from './styles';
 
 interface Transaction {
   id: string;
@@ -70,27 +70,32 @@ const Dashboard: React.FC = () => {
         </Card>
       </CardContainer>
 
-      <TableContainer>
-        <table>
-          <thead>
-            <tr>
-              <th>Título</th>
-              <th>Preço</th>
-              <th>Categoria</th>
-              <th>Data</th>
-            </tr>
-          </thead>
+      {!Boolean(transactions.length) ?
+        <MessageEmpty>Não há dados cadastros</MessageEmpty>
+        : <TableContainer>
+          <table>
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Preço</th>
+                <th>Categoria</th>
+                <th>Data</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {transactions.map(transaction => (<tr key={transaction.id}>
-              <td className="title">{transaction.title}</td>
-              <td className={transaction.type}>{transaction.type === "outcome" ? "-" : ""} {formatValue(Number(transaction.value))}</td>
-              <td>{transaction.category.title}</td>
-              <td>{formatDate(transaction.created_at)}</td>
-            </tr>))}
-          </tbody>
-        </table>
-      </TableContainer>
+            <tbody>
+              {transactions.map(transaction => (
+                <tr key={transaction.id}>
+                  <td className={transaction.type}>{transaction.title}</td>
+                  <td className={transaction.type}>{transaction.type === "outcome" ? "-" : ""} {formatValue(Number(transaction.value))}</td>
+                  <td>{transaction.category.title}</td>
+                  <td>{formatDate(transaction.created_at)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </TableContainer>}
+
     </Container>
   </>);
 };

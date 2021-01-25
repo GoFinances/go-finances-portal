@@ -2,22 +2,34 @@ import 'styled-components'
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    title: string,
+    title: string;
     colors: {
-      primary: string,
-      secundary: string,
-      background: string,
-      text: string,
-      textSecundary: string,
+      background: string;
+      primary: string;
+      grey: string;
+      orange: string;
+      yellow: string;
+      purple: string;
+      white: string;
+      green: string;
+      dark: string;
+      red: string;
 
-      card_bg_primary: string,
-      card_bg_secondary: string,
-      card_border_primary: string,
+      card_bg: string;
+      card_text: string;
 
-      transactions_bg: string,
-      transactions_title: string,
-      transactions_income: string,
-      transactions_outcome: string,
+    },
+    fontSizes: {
+      default: string;
+      huge: string;
+      small: string;
+      tiny: string;
+    },
+    spacing: {
+      default: string;
+      vertical: string;
+      horizontal: string;
+      huge: string;
     }
   }
 }
