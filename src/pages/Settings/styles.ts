@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const BtnAddNewSetting = styled.button`
   width: 30px;
   height: 30px;
-  border-radius: 15px;
+  border-radius: 6px;
   border: 1px solid ${p => p.theme.colors.primary};
   background: ${p => p.theme.colors.primary};
   color: #FFF;

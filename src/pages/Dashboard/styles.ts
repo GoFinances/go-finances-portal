@@ -22,8 +22,8 @@ export const Card = styled.div<CardProps>`
   padding: 22px 32px;
   border-radius: 5px;
   background: ${p => (!p.total ? p.theme.colors.card_bg : p.theme.colors.orange)};
-  color: ${p => (!p.total ? p.theme.colors.card_text : p.theme.colors.dark)};
-  border: 1px solid ${p => (!p.total ? p.theme.colors.card_bg : p.theme.colors.dark)};
+  color: ${p => (!p.total ? p.theme.colors.card_text : p.theme.colors.white)};
+  border: 1px solid ${p => (!p.total ? p.theme.colors.card_bg : p.theme.title == 'light' ? p.theme.colors.primary : p.theme.colors.dark)};
 
   header {
     display: flex;
@@ -93,15 +93,15 @@ export const TableContainer = styled.section`
 
             &.income {
               font-weight: bold;
-              border-left: 5px solid ${p => p.theme.colors.green};
+              border-left: 3px solid ${p => p.theme.colors.green};
             }
 
             &.outcome {
               font-weight: bold;
-              border-left: 5px solid ${p => p.theme.colors.red};
+              border-left: 3px solid ${p => p.theme.colors.red};
             }
 
-            border-left: 5px solid red;
+            border-left: 3px solid red;
             border-radius: 8px 0 0 8px;
           }
 

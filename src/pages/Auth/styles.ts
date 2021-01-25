@@ -17,7 +17,7 @@ export const Container = styled.div`
 export const Login = styled.div`
   width: 400px;
   height: 520px;
-  background: ${p => p.theme.colors.dark};
+  background: ${p => p.theme.colors.white};
   border-radius: 5px;
   top: 100px;
   position: absolute;
@@ -55,8 +55,8 @@ export const SubmitLogin = styled.button`
   width: 90%;
   height: 60px;
   background: ${p => p.theme.colors.primary};
-  color: ${p => p.theme.colors.dark};
-  border: 1px solid ${p => p.theme.colors.dark};
+  color: ${p => p.theme.colors.white};
+  border: 1px solid ${p => p.theme.colors.white};
   border-radius: 5px;
   text-transform: uppercase;
 
@@ -65,7 +65,7 @@ export const SubmitLogin = styled.button`
   }
 
   &:hover, :focus, :disabled {
-    color: ${p => p.theme.colors.dark};
+    color: ${p => lighten(0.08, p.theme.colors.white)};
     background: ${p => lighten(0.08, p.theme.colors.primary)};
   }
 `;

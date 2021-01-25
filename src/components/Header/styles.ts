@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 interface ContainerProps {
   size?: 'small' | 'large';
@@ -17,6 +18,9 @@ export const Container = styled.div<ContainerProps>`
     justify-content: space-between;
 
     nav {
+      display:flex;
+      align-items:center;
+
       a {
         color: ${p => p.theme.title === 'light' ? p.theme.colors.white : p.theme.colors.dark};
         text-decoration: none;
@@ -32,5 +36,18 @@ export const Container = styled.div<ContainerProps>`
         }
       }
     }
+  }
+`;
+
+export const Logout = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  background: ${p => p.theme.title === 'light' ? p.theme.colors.orange : p.theme.colors.dark};
+  padding: 4px 8px;
+  border-radius: 8px;
+
+  color: ${p => p.theme.title === 'light' ? p.theme.colors.white : p.theme.colors.orange} !important;
+  svg {
+    color: ${p => p.theme.title === 'light' ? p.theme.colors.white : p.theme.colors.orange};
   }
 `;

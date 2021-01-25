@@ -98,10 +98,10 @@ const ModalAddNewSetting: React.FC<IModalProps> = ({
         title: Yup.string().required('Título é obrigatório'),
         icon: Yup.string().required('Ícone é obrigatório'),
         background_color_dark: Yup.string().required(
-          'Cor Dark é obrigatória',
+          'Tema escuro é obrigatória',
         ),
         background_color_light: Yup.string().required(
-          'Cor Light é obrigatória',
+          'Tema claro é obrigatória',
         ),
       });
 

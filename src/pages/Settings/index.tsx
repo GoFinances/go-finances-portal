@@ -13,7 +13,7 @@ interface ISettings {
 }
 
 const Settings: React.FC = () => {
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
   const toggleModal = useCallback(() => setOpenModal(openModal ? false : true), [openModal]);
   const [settings, setSettings] = useState<ISettings[]>([]);
 
@@ -27,8 +27,8 @@ const Settings: React.FC = () => {
               <tr>
                 <th>Título</th>
                 <th>Ícone</th>
-                <th>Cor Dark</th>
-                <th>Cor Light</th>
+                <th>Tema escuro</th>
+                <th>Tema claro</th>
                 <th>
                   <BtnAddNewSetting onClick={() => toggleModal()}>
                     <FiPlus />

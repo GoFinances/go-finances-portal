@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
 import Switch from "react-switch";
-
+import { FiLogOut } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
+
 import { ThemeContext } from 'styled-components';
 
 import Logo from '../../assets/logo.svg';
 
 import { useTheme } from '../../hooks/theme';
 
-import { Container } from './styles';
+import { Container, Logout } from './styles';
 import { useAuth } from '../../hooks/auth';
 
 interface HeaderProps {
@@ -34,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => {
         <nav>
           <nav style={{ display: "flex" }}>
             <NavLink to="/dashboard" exact activeStyle={styledLink}>
-              Listagem
+              Dashboard
             </NavLink>
             <NavLink to="/nova-transacao" exact activeStyle={styledLink}>
               Nova Transação
@@ -45,9 +46,9 @@ const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => {
             <NavLink to="/configuracao" exact activeStyle={styledLink}>
               Configuracão
             </NavLink>
-            <NavLink to="/" onClick={() => signOut()} exact activeStyle={styledLink}>
-              Logout
-            </NavLink>
+            <Logout to="/" onClick={() => signOut()} exact activeStyle={styledLink}>
+              <FiLogOut /> Sair
+            </Logout>
             <div style={{ marginLeft: "10px", display: "flex", alignItems: "center" }}>
               <Switch
                 onChange={() => toggleTheme()}
@@ -57,8 +58,8 @@ const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => {
                 height={10}
                 width={40}
                 handleDiameter={20}
-                offColor={colors.primary}
-                onColor={colors.background}
+                offColor={colors.orange}
+                onColor={colors.dark}
               />
             </div>
           </nav>

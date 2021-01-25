@@ -19,7 +19,7 @@ export const Login = styled.div`
   height: auto;
   background: #FFF;
   border-radius: 5px;
-  border: 1px solid #5636D3;
+  border: 1px solid ${p => p.theme.colors.primary};
   border-radius: 5px;
   padding-bottom: 10px;
 
@@ -28,7 +28,7 @@ export const Login = styled.div`
     display: flex;
     justify-content: center;
     height: 150px;
-    background: #5636D3;
+    background: ${p => p.theme.colors.primary};
     img {
       width: 345px
     }
@@ -54,9 +54,9 @@ export const ButtonForm = styled.button<LayoutProps>`
   margin-top: 15px;
   width: 90%;
   height: 60px;
-  background: ${p => (!p.themeReverse ? p.theme.colors.primary : p.theme.colors.dark)};
-  color: ${p => (!p.themeReverse ? p.theme.colors.dark : p.theme.colors.primary)};
-  border: 1px solid ${p => (!p.themeReverse ? p.theme.colors.dark : p.theme.colors.primary)};
+  background: ${p => (!p.themeReverse ? p.theme.colors.primary : p.theme.colors.white)};
+  color: ${p => (!p.themeReverse ? p.theme.colors.white : p.theme.colors.primary)};
+  border: 1px solid ${p => (!p.themeReverse ? p.theme.colors.white : p.theme.colors.primary)};
   border-radius: 5px;
   text-transform: uppercase;
 
@@ -65,7 +65,7 @@ export const ButtonForm = styled.button<LayoutProps>`
   }
 
   &:hover, :focus , :disabled{
-    color: ${p => p.theme.colors.dark};
+    color: ${p => (!p.themeReverse ? p.theme.colors.white : p.theme.colors.primary)};
     background: ${p => lighten(0.08, p.theme.colors.primary)};
   }
 `;

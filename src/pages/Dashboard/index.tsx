@@ -52,21 +52,21 @@ const Dashboard: React.FC = () => {
             <p>Entradas</p>
             <img src={income} alt="Income" />
           </header>
-          <h1 data-testid="balance-income">{balance ? formatValue(Number(balance.income)) : ''}</h1>
+          <h1 data-testid="balance-income">{Boolean(balance.income) ? formatValue(Number(balance.income)) : ''}</h1>
         </Card>
         <Card>
           <header>
             <p>Saídas</p>
             <img src={outcome} alt="Outcome" />
           </header>
-          <h1 data-testid="balance-outcome">{balance ? formatValue(Number(balance.outcome)) : ''}</h1>
+          <h1 data-testid="balance-outcome">{Boolean(balance.outcome) ? formatValue(Number(balance.outcome)) : ''}</h1>
         </Card>
         <Card total>
           <header>
             <p>Total</p>
             <img src={total} alt="Total" />
           </header>
-          <h1 data-testid="balance-total">{balance ? formatValue(Number(balance.total)) : ''}</h1>
+          <h1 data-testid="balance-total">{Boolean(balance.total) ? formatValue(Number(balance.total)) : ''}</h1>
         </Card>
       </CardContainer>
 
