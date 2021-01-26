@@ -122,7 +122,7 @@ const ModalAddNewSetting: React.FC<IModalProps> = ({
           addToast({
             type: 'error',
             title: 'Atenção',
-            description: err.status == "error" ? err.message : "Não foi possível cadastrar sua categoria."
+            description: "Não foi possível cadastrar sua categoria."
           });
 
         });
@@ -138,7 +138,7 @@ const ModalAddNewSetting: React.FC<IModalProps> = ({
       setIsOpen();
     }
 
-  }, [setIsOpen, onSubmitted, setIsLoading])
+  }, [addToast, setIsOpen, onSubmitted, setIsLoading])
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>

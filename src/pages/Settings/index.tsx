@@ -103,7 +103,7 @@ const Settings: React.FC = () => {
 
             <tbody>
               {categories.map(category => {
-                const [_, iconName] = category.icon.split('/');
+                const [, iconName] = category.icon.split('/');
                 const Icon = (Icons as any)[iconName];
 
                 return (

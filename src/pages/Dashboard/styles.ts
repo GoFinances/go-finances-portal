@@ -23,7 +23,7 @@ export const Card = styled.div<CardProps>`
   border-radius: 5px;
   background: ${p => (!p.total ? p.theme.colors.card_bg : p.theme.colors.orange)};
   color: ${p => (!p.total ? p.theme.colors.card_text : p.theme.colors.white)};
-  border: 1px solid ${p => (!p.total ? p.theme.colors.card_bg : p.theme.title == 'light' ? p.theme.colors.primary : p.theme.colors.dark)};
+  border: 1px solid ${p => (!p.total ? p.theme.colors.card_bg : p.theme.title === 'light' ? p.theme.colors.primary : p.theme.colors.dark)};
 
   header {
     display: flex;
