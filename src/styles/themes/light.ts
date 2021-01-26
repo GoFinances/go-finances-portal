@@ -6,7 +6,7 @@ export default {
     grey: '#363F5F',
     orange: '#FF872C',
     yellow: '#FFD700',
-    purple: '#8A2BE2',
+    purple: '#5636d3',
     white: '#FFF',
     green: '#00FF7F',
     dark: '#000',

@@ -21,14 +21,14 @@ export const Login = styled.div`
   border-radius: 5px;
   top: 100px;
   position: absolute;
-  border: 1px solid ${p => p.theme.colors.primary};
+  border: 1px solid ${p => p.theme.colors.purple};
 
 
   .container-logo{
     display: flex;
     justify-content: center;
     height: 150px;
-    background: ${p => p.theme.colors.primary};
+    background: ${p => p.theme.colors.purple};
     img {
       width: 345px
     }
@@ -54,7 +54,7 @@ export const SubmitLogin = styled.button`
   margin-top: 15px;
   width: 90%;
   height: 60px;
-  background: ${p => p.theme.colors.primary};
+  background: ${p => p.theme.colors.purple};
   color: ${p => p.theme.colors.white};
   border: 1px solid ${p => p.theme.colors.white};
   border-radius: 5px;
@@ -66,6 +66,6 @@ export const SubmitLogin = styled.button`
 
   &:hover, :focus, :disabled {
     color: ${p => lighten(0.08, p.theme.colors.white)};
-    background: ${p => lighten(0.08, p.theme.colors.primary)};
+    background: ${p => lighten(0.08, p.theme.colors.purple)};
   }
 `;
