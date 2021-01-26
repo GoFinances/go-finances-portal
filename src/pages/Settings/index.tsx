@@ -53,14 +53,14 @@ const Settings: React.FC = () => {
 
   const handleDeleteCategory = useCallback(async (id: number) => {
     try {
-      const { status } = await api.delete(`/categories/${id}`);
+      
+      await api.delete(`/categories/${id}`);
 
-      if (status === 204)
-        addToast({
-          type: 'success',
-          title: 'Parabéns',
-          description: 'Categoria excluída com sucesso.'
-        });
+      addToast({
+        type: 'info',
+        title: 'Atenção',
+        description: 'Categoria excluída com sucesso.'
+      });
 
     } catch (error) {
       addToast({
