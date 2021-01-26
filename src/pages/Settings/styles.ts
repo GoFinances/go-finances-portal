@@ -16,6 +16,33 @@ export const BtnAddNewSetting = styled.button`
   color: #FFF;
 `;
 
+interface ISquare {
+  background: string;
+}
+
+export const SquareContainer = styled.div`
+  display: flex;
+  align-items:center;
+`;
+
+export const Square = styled.div<ISquare>`
+  padding: 5px;
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  margin: 0 5px;
+  background-color: ${props => props.background};
+`;
+
+export const BtnDeleteCategory = styled.button`
+  background: transparent;
+  border: none;
+
+  svg {
+    color: ${p => p.theme.title === 'light' ? p.theme.colors.primary : p.theme.colors.white};
+  }
+`;
+
 export const TableContainer = styled.section`
   margin-top: 64px;
 
@@ -24,7 +51,6 @@ export const TableContainer = styled.section`
     border-spacing: 0 8px;
 
     th {
-      color: ${p => p.theme.colors.dark};
       font-weight: normal;
       padding: 20px 32px;
       text-align: left;
@@ -35,7 +61,7 @@ export const TableContainer = styled.section`
     td {
       padding: 20px 32px;
       border: 0;
-      background: ${p => p.theme.colors.primary};
+      background: ${p => p.theme.title === 'light' ? p.theme.colors.white : p.theme.colors.orange};
       font-size: 16px;
       font-weight: normal;
       color: ${p => p.theme.colors.dark};

@@ -10,6 +10,8 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { CSSProperties } from 'styled-components';
 
+import api from '../../services/api';
+
 import Input from '../../components/Input'
 
 import Select from '../Select';
@@ -17,6 +19,7 @@ import Modal from '../Modal';
 import InputColor from '../InputColor';
 
 import { useTheme } from '../../hooks/theme';
+import { useToast } from '../../hooks/toast';
 
 import { getCustomSelectOptionsModal } from '../../utils/customSelectCategoryOption';
 import validationErrorsYup from '../../utils/validate/validateErrorsYup';
@@ -29,6 +32,7 @@ import { Container, Title, BtnForm, SubmitContainer } from './styles';
 interface IModalProps {
   isOpen: boolean;
   setIsOpen: () => void;
+  onSubmitted: () => void;
 }
 
 interface AddCategoryFormData {
@@ -41,9 +45,11 @@ interface AddCategoryFormData {
 
 const ModalAddNewSetting: React.FC<IModalProps> = ({
   isOpen,
-  setIsOpen
+  setIsOpen,
+  onSubmitted
 }) => {
 
+  const { addToast } = useToast();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { theme } = useTheme();
   const formRef = useRef<FormHandles>(null);
@@ -90,7 +96,6 @@ const ModalAddNewSetting: React.FC<IModalProps> = ({
   const handleSubmit = useCallback(async (formData: AddCategoryFormData) => {
 
     try {
-      console.log("formData", formData)
       formRef.current ?.setErrors({});
       setIsLoading(true);
 
@@ -109,22 +114,31 @@ const ModalAddNewSetting: React.FC<IModalProps> = ({
         abortEarly: false,
       });
 
-      // const { data } = await api.post('/categories', formData);
+      await api.post('/categories', formData)
+        .then(() => {
+          onSubmitted();
+        })
+        .catch((err) => {
+          addToast({
+            type: 'error',
+            title: 'Atenção',
+            description: err.status == "error" ? err.message : "Não foi possível cadastrar sua categoria."
+          });
 
-      setIsLoading(false);
+        });
 
-      // onSubmitted({ ...data });
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = validationErrorsYup(err);
-
         formRef.current ?.setErrors(errors);
       }
 
+    } finally {
       setIsLoading(false);
+      setIsOpen();
     }
 
-  }, [])
+  }, [setIsOpen, onSubmitted, setIsLoading])
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
