@@ -10,6 +10,8 @@ import { useTheme } from '../../hooks/theme';
 import { useToast } from '../../hooks/toast';
 
 import Header from '../../components/Header';
+import Tooltip from '../../components/Tooltip';
+
 import ModalAddNewSetting from '../../components/ModalAddNewSetting';
 
 import { Container, TableContainer, BtnAddNewSetting, Square, SquareContainer, BtnDeleteCategory } from './styles';
@@ -106,7 +108,9 @@ const Settings: React.FC = () => {
                 <th>Tema claro</th>
                 <th>
                   <BtnAddNewSetting onClick={() => toggleModal()}>
-                    <FiPlus />
+                    <Tooltip title="Adicionar categoria">
+                      <FiPlus />
+                    </Tooltip>
                   </BtnAddNewSetting>
                 </th>
               </tr>
