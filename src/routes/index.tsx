@@ -7,7 +7,6 @@ import Dashboard from '../pages/Dashboard';
 import Import from '../pages/Import';
 import Auth from '../pages/Auth';
 import RegisterUser from '../pages/RegisterUser';
-import NewTransaction from '../pages/NewTransaction';
 import Settings from '../pages/Settings';
 
 
@@ -20,7 +19,6 @@ const Routes: React.FC = () => {
       <Route path="/cadastro-usuario" component={RegisterUser} />
       <Route path="/dashboard" component={Dashboard} isPrivate={true} />
       <Route path="/import" component={Import} isPrivate={true} />
-      <Route path="/nova-transacao" component={NewTransaction} isPrivate={true} />
       <Route path="/configuracao" component={Settings} isPrivate={true} />
     </Switch>
   )
