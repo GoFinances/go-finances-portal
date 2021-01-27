@@ -46,9 +46,7 @@ const Dashboard: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [balance, setBalance] = useState<Balance>({} as Balance);
 
-  useEffect(() => {
-    loadTransactions()
-  }, [addToast]);
+
 
   const loadTransactions = useCallback(async () => {
     try {
@@ -91,6 +89,10 @@ const Dashboard: React.FC = () => {
         });
     }
 
+  }, [addToast, loadTransactions]);
+
+  useEffect(() => {
+    loadTransactions()
   }, [addToast, loadTransactions]);
 
 
