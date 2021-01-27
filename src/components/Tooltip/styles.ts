@@ -5,7 +5,7 @@ export const Container = styled.div`
   span {
     z-index: 1000;
     width: auto;
-    background: #ff9000;
+    background: ${p => p.theme.title == 'light' ? p.theme.colors.orange : p.theme.colors.white};
     padding: 8px;
     border-radius: 4px;
     font-size: 14px;
@@ -17,11 +17,11 @@ export const Container = styled.div`
     bottom: calc(100% + 12px);
     left: 50%;
     transform: translateX(-50%);
-    color: #312e38;
+    color: ${p => p.theme.title == 'light' ? p.theme.colors.white : p.theme.colors.orange};
     &::before {
       content: '';
       border-style: solid;
-      border-color: #ff9000 transparent;
+      border-color: ${p => p.theme.title == 'light' ? p.theme.colors.orange : p.theme.colors.white} transparent;
       border-width: 6px 6px 0 6px;
       top: 100%;
       position: absolute;

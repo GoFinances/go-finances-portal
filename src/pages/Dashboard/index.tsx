@@ -18,6 +18,7 @@ import formatValue from '../../utils/formatValue';
 import formatDate from '../../utils/formatDate';
 
 import { Container, CardContainer, Card, TableContainer, MessageEmpty, BtnAddNewTransaction, BtnDeleteTransaction, IconContainer } from './styles';
+import Tooltip from '../../components/Tooltip';
 
 interface Transaction {
   id: string;
@@ -132,7 +133,9 @@ const Dashboard: React.FC = () => {
                 <th>Data</th>
                 <th>
                   <BtnAddNewTransaction onClick={() => { }}>
-                    <FiPlus />
+                    <Tooltip title={"Nova transação"}>
+                      <FiPlus />
+                    </Tooltip>
                   </BtnAddNewTransaction>
                 </th>
               </tr>

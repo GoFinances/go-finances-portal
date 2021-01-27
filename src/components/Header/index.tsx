@@ -43,10 +43,8 @@ const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => {
             <NavLink to="/configuracao" exact activeStyle={styledLink}>
               Configuração
             </NavLink>
-            <Logout to="/" onClick={() => signOut()} exact activeStyle={styledLink}>
-              <FiLogOut /> Sair
-            </Logout>
-            <div style={{ marginLeft: "10px", display: "flex", alignItems: "center" }}>
+
+            <div style={{ marginLeft: "35px", display: "flex", alignItems: "center" }}>
               <Switch
                 onChange={() => toggleTheme()}
                 checked={title === 'dark'}
@@ -59,6 +57,10 @@ const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => {
                 onColor={colors.dark}
               />
             </div>
+
+            <Logout to="/" onClick={() => signOut()} exact activeStyle={styledLink}>
+              <FiLogOut /> Sair
+            </Logout>
           </nav>
         </nav>
       </header>

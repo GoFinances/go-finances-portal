@@ -45,6 +45,7 @@ export const Logout = styled(NavLink)`
   background: ${p => p.theme.title === 'light' ? p.theme.colors.orange : p.theme.colors.dark};
   padding: 4px 8px;
   border-radius: 8px;
+  margin-left: 32px;
 
   color: ${p => p.theme.title === 'light' ? p.theme.colors.white : p.theme.colors.orange} !important;
   svg {
