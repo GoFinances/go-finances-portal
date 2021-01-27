@@ -37,9 +37,6 @@ const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => {
             <NavLink to="/dashboard" exact activeStyle={styledLink}>
               Dashboard
             </NavLink>
-            <NavLink to="/nova-transacao" exact activeStyle={styledLink}>
-              Nova Transação
-            </NavLink>
             <NavLink to="/import" exact activeStyle={styledLink}>
               Importação
             </NavLink>

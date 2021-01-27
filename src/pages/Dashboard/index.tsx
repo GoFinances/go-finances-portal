@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import * as Icons from 'react-icons/all';
+
+import { FiPlus, FaTrashAlt } from 'react-icons/all';
 
 import income from '../../assets/income.svg';
 import outcome from '../../assets/outcome.svg';
@@ -15,7 +17,7 @@ import Header from '../../components/Header';
 import formatValue from '../../utils/formatValue';
 import formatDate from '../../utils/formatDate';
 
-import { Container, CardContainer, Card, TableContainer, MessageEmpty } from './styles';
+import { Container, CardContainer, Card, TableContainer, MessageEmpty, BtnAddNewTransaction, BtnDeleteTransaction, IconContainer } from './styles';
 
 interface Transaction {
   id: string;
@@ -44,26 +46,51 @@ const Dashboard: React.FC = () => {
   const [balance, setBalance] = useState<Balance>({} as Balance);
 
   useEffect(() => {
-    async function loadTransactions(): Promise<void> {
-      try {
-        const { data: { success, message, result } } = await api.get(`/transactions`);
-        if (!success)
-          throw new Error(message);
-
-        setBalance(result.balance);
-        setTransactions(result.transactions);
-
-      } catch (err) {
-        if (err instanceof Error)
-          addToast({
-            type: 'error',
-            title: 'Atenção',
-            description: err.message
-          });
-      }
-    }
-    loadTransactions();
+    loadTransactions()
   }, [addToast]);
+
+  const loadTransactions = useCallback(async () => {
+    try {
+      const { data: { success, message, result } } = await api.get(`/transactions`);
+      if (!success)
+        throw new Error(message);
+
+      setBalance(result.balance);
+      setTransactions(result.transactions);
+
+    } catch (err) {
+      if (err instanceof Error)
+        addToast({
+          type: 'error',
+          title: 'Atenção',
+          description: err.message
+        });
+    }
+  }, [addToast])
+
+  const handleDeleteTransaction = useCallback(async (id: string) => {
+    try {
+      const { data: { success, message } } = await api.delete(`/transactions/${id}`);
+      if (!success)
+        throw new Error(message);
+
+      addToast({
+        type: 'info',
+        title: 'Atenção',
+        description: 'Transação excluída com sucesso.'
+      });
+
+      loadTransactions();
+    } catch (err) {
+      if (err instanceof Error)
+        addToast({
+          type: 'error',
+          title: 'Atenção',
+          description: err.message
+        });
+    }
+
+  }, [addToast, loadTransactions]);
 
 
   return (<>
@@ -103,6 +130,11 @@ const Dashboard: React.FC = () => {
                 <th>Preço</th>
                 <th>Categoria</th>
                 <th>Data</th>
+                <th>
+                  <BtnAddNewTransaction onClick={() => { }}>
+                    <FiPlus />
+                  </BtnAddNewTransaction>
+                </th>
               </tr>
             </thead>
 
@@ -115,8 +147,17 @@ const Dashboard: React.FC = () => {
                   <tr key={transaction.id}>
                     <td className={transaction.type}>{transaction.title}</td>
                     <td className={transaction.type}>{transaction.type === "outcome" ? "-" : ""} {formatValue(Number(transaction.value))}</td>
-                    <td className="icon" > <Icon size={25} color={theme.title === 'light' ? transaction.category.background_color_light : transaction.category.background_color_dark} /> {transaction.category.title}</td>
+                    <td className="icon" >
+                      <IconContainer>
+                        <Icon size={25} color={theme.title === 'light' ? transaction.category.background_color_light : transaction.category.background_color_dark} /> {transaction.category.title}
+                      </IconContainer>
+                    </td>
                     <td>{formatDate(transaction.created_at)}</td>
+                    <td>
+                      <BtnDeleteTransaction onClick={() => handleDeleteTransaction(transaction.id)}>
+                        <FaTrashAlt size={25} />
+                      </BtnDeleteTransaction>
+                    </td>
                   </tr>
                 )
               })}

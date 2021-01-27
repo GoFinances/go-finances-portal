@@ -11,6 +11,29 @@ export const Container = styled.div`
   padding: 40px 20px;
 `;
 
+export const BtnDeleteTransaction = styled.button`
+  background: transparent;
+  border: none;
+
+  svg {
+    color: ${p => p.theme.title === 'light' ? p.theme.colors.primary : p.theme.colors.white};
+  }
+`;
+
+export const BtnAddNewTransaction = styled.button`
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid ${p => p.theme.colors.primary};
+  background: ${p => p.theme.colors.primary};
+  color: #FFF;
+`;
+
+
+
 export const CardContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -48,6 +71,14 @@ export const MessageEmpty = styled.div`
   padding: 100px;
 `;
 
+export const IconContainer = styled.section`
+  display: flex;
+  align-items: center;
+  svg {
+    margin-right: 5px;
+  }
+`;
+
 export const TableContainer = styled.section`
   margin-top: 20px;
 
@@ -81,11 +112,7 @@ export const TableContainer = styled.section`
           }
 
           &.icon {
-            display: flex;
-            align-items: center;
-            svg {
-              margin-right: 5px;
-            }
+
           }
 
           &.income {

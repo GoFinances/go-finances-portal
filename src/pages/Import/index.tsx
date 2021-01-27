@@ -44,6 +44,12 @@ const Import: React.FC = () => {
         }),
       );
 
+      addToast({
+        type: 'success',
+        title: 'Atenção',
+        description: "Transações inclusas com sucesso."
+      });
+
       history.push("/dashboard")
     } catch (err) {
       console.log(err.response.error);

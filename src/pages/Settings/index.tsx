@@ -17,7 +17,7 @@ import { Title } from '../Import/styles';
 
 
 interface ICategories {
-  id: number;
+  id: string;
   title: string;
   icon: string;
   background_color_dark: string;
@@ -62,7 +62,7 @@ const Settings: React.FC = () => {
 
   }, [addToast, loadCategories, toggleModal])
 
-  const handleDeleteCategory = useCallback(async (id: number) => {
+  const handleDeleteCategory = useCallback(async (id: string) => {
     try {
       const { data: { success, message } } = await api.delete(`/categories/${id}`);
       if (!success)
