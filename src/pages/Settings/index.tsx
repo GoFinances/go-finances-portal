@@ -13,6 +13,7 @@ import Header from '../../components/Header';
 import ModalAddNewSetting from '../../components/ModalAddNewSetting';
 
 import { Container, TableContainer, BtnAddNewSetting, Square, SquareContainer, BtnDeleteCategory } from './styles';
+import { Title } from '../Import/styles';
 
 
 interface ICategories {
@@ -47,7 +48,7 @@ const Settings: React.FC = () => {
         });
     }
 
-  }, [setCategories]);
+  }, [addToast]);
 
   const onSubmitted = useCallback(() => {
     addToast({
@@ -90,11 +91,11 @@ const Settings: React.FC = () => {
   }, [loadCategories]);
 
 
-
   return (
     <>
       <Header size="small" />
       <Container>
+        <Title>Configurações</Title>
         <TableContainer>
           <table>
             <thead>

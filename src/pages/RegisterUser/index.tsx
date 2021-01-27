@@ -96,7 +96,7 @@ const RegisterUser: React.FC = () => {
           (errors.confirmPassword.invalid || !errors.confirmPassword.read)
         ) return
 
-        const { data: { success, message, result } } = await api.post('/users', {
+        const { data: { success, message } } = await api.post('/users', {
           name, email, password
         });
 

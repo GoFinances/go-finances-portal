@@ -7,6 +7,14 @@ export const Container = styled.div`
   padding: 40px 20px;
 `;
 
+export const Title = styled.h1`
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 54px;
+  color: ${p => p.theme.title === 'light' ? p.theme.colors.dark : p.theme.colors.orange};
+  text-align: left;
+`;
+
 export const BtnAddNewSetting = styled.button`
   width: 30px;
   height: 30px;
