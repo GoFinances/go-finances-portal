@@ -56,6 +56,7 @@ export const TableContainer = styled.section`
       text-align: left;
       font-size: 16px;
       line-height: 24px;
+      color: ${p => p.theme.title === 'light' ? p.theme.colors.dark : p.theme.colors.orange};
     }
 
     td {

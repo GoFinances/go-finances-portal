@@ -6,8 +6,6 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 import api from '../../services/api';
 
-import GFRequest from '../../utils/GFRequest';
-
 import { useTheme } from '../../hooks/theme';
 import { useToast } from '../../hooks/toast';
 
