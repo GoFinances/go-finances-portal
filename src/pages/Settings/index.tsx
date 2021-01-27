@@ -6,6 +6,8 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 import api from '../../services/api';
 
+import GFRequest from '../../utils/GFRequest';
+
 import { useTheme } from '../../hooks/theme';
 import { useToast } from '../../hooks/toast';
 
@@ -32,12 +34,22 @@ const Settings: React.FC = () => {
   const [categories, setCategories] = useState<ICategories[]>([]);
 
   const loadCategories = useCallback(async () => {
-    const response = await api.get("/categories");
+    try {
+      const { data: { success, message, result } } = await api.get('/categories');
+      if (!success)
+        throw new Error(message);
 
-    const categories = response.data;
-    setCategories(categories);
+      setCategories(result)
+    } catch (err) {
+      if (err instanceof Error)
+        addToast({
+          type: 'error',
+          title: 'Atenção',
+          description: err.message
+        });
+    }
 
-  }, []);
+  }, [setCategories]);
 
   const onSubmitted = useCallback(() => {
     addToast({
@@ -53,8 +65,9 @@ const Settings: React.FC = () => {
 
   const handleDeleteCategory = useCallback(async (id: number) => {
     try {
-      
-      await api.delete(`/categories/${id}`);
+      const { data: { success, message } } = await api.delete(`/categories/${id}`);
+      if (!success)
+        throw new Error(message);
 
       addToast({
         type: 'info',
@@ -62,16 +75,15 @@ const Settings: React.FC = () => {
         description: 'Categoria excluída com sucesso.'
       });
 
-    } catch (error) {
-      addToast({
-        type: 'error',
-        title: 'Atenção',
-        description: "Ocorreu um erro ao tentar excluir a categoria."
-      });
-    } finally {
       loadCategories();
+    } catch (err) {
+      if (err instanceof Error)
+        addToast({
+          type: 'error',
+          title: 'Atenção',
+          description: err.message
+        });
     }
-
 
   }, [addToast, loadCategories]);
 
@@ -109,7 +121,7 @@ const Settings: React.FC = () => {
                 return (
                   <tr key={category.id}>
                     <td className="title">{category.title}</td>
-                    <td className="" > <Icon size={25} color={theme.title === 'light' ? category.background_color_light : category.background_color_dark} /></td>
+                    <td> <Icon size={25} color={theme.title === 'light' ? category.background_color_light : category.background_color_dark} /></td>
                     <td>
                       <SquareContainer>
                         <Square background={category.background_color_dark} />{category.background_color_dark}

@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => {
               Importação
             </NavLink>
             <NavLink to="/configuracao" exact activeStyle={styledLink}>
-              Configuracão
+              Configuração
             </NavLink>
             <Logout to="/" onClick={() => signOut()} exact activeStyle={styledLink}>
               <FiLogOut /> Sair

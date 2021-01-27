@@ -80,6 +80,14 @@ export const TableContainer = styled.section`
             color: ${p => p.theme.colors.dark};
           }
 
+          &.icon {
+            display: flex;
+            align-items: center;
+            svg {
+              margin-right: 5px;
+            }
+          }
+
           &.income {
             color: ${p => p.theme.colors.green};
           }

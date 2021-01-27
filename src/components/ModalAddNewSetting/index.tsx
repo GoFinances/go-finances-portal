@@ -114,9 +114,12 @@ const ModalAddNewSetting: React.FC<IModalProps> = ({
         abortEarly: false,
       });
 
-      await api.post('/categories', formData)
+      const { data: { success, message } } = await api.post('/categories', formData);
+      if (!success)
+        throw new Error(message);
+
       onSubmitted();
-      
+
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = validationErrorsYup(err);
@@ -124,11 +127,12 @@ const ModalAddNewSetting: React.FC<IModalProps> = ({
         return;
       }
 
-      addToast({
-        type: 'error',
-        title: 'Atenção',
-        description: "Não foi possível cadastrar sua categoria."
-      });
+      if (err instanceof Error)
+        addToast({
+          type: 'error',
+          title: 'Atenção',
+          description: err.message
+        });
 
     } finally {
       setIsLoading(false);

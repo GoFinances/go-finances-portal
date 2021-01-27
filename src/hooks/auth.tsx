@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 import api from '../services/api';
+import { useToast } from './toast';
 
 interface SignInCredentials {
   email: string;
@@ -28,6 +29,8 @@ interface AuthState {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
+  const { addToast } = useToast();
+
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@GoFinance:token');
     const user = localStorage.getItem('@GoFinance:user');
@@ -49,12 +52,16 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post<AuthState>('/sessions', {
+    const { data: { success, message, result } } = await api.post('/sessions', {
       email,
       password,
     });
 
-    const { token, user } = response.data;
+    if (!success)
+      throw new Error(message);
+
+
+    const { token, user } = result;
 
     localStorage.setItem('@GoFinance:token', token);
     localStorage.setItem('@GoFinance:user', JSON.stringify(user));
@@ -62,7 +69,7 @@ const AuthProvider: React.FC = ({ children }) => {
     api.defaults.headers.authorization = `Bearer ${token}`;
 
     setData({ token, user });
-  }, []);
+  }, [addToast]);
 
   const updateUser = useCallback(
     (user: User) => {

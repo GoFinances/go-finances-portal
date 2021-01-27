@@ -96,11 +96,13 @@ const RegisterUser: React.FC = () => {
           (errors.confirmPassword.invalid || !errors.confirmPassword.read)
         ) return
 
-        const response = await api.post("users", { name, email, password });
-        const { status } = response;
+        const { data: { success, message, result } } = await api.post('/users', {
+          name, email, password
+        });
 
-        if (status !== 200)
-          throw new Error("Internal Serve Error")
+        if (!success)
+          throw new Error(message);
+
 
         addToast({
           type: 'success',
@@ -109,12 +111,13 @@ const RegisterUser: React.FC = () => {
         });
 
         history.push("/login");
-      } catch (response) {
-        addToast({
-          type: 'error',
-          title: 'Erro na criação do usuário.',
-          description: 'Ocorreu um erro ao fazer login, cheque as credenciais.'
-        });
+      } catch (err) {
+        if (err instanceof Error)
+          addToast({
+            type: 'error',
+            title: 'Atenção',
+            description: err.message
+          });
       }
     },
     [

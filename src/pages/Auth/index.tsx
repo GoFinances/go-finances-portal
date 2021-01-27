@@ -59,11 +59,12 @@ const Auth: React.FC = () => {
 
         await signIn({ email: email, password: password });
       } catch (err) {
-        addToast({
-          type: 'error',
-          title: 'Erro na autenticação',
-          description: 'Ocorreu um erro ao fazer login, cheque as credenciais',
-        });
+        if (err instanceof Error)
+          addToast({
+            type: 'error',
+            title: 'Atenção',
+            description: err.message
+          });
       }
     },
     [signIn, addToast, errors],

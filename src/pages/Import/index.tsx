@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 
 import filesize from 'filesize';
 
+import { useToast } from '../../hooks/toast';
+
 import Header from '../../components/Header';
 import FileList from '../../components/FileList';
 import Upload from '../../components/Upload';
@@ -21,9 +23,19 @@ interface FileProps {
 const Import: React.FC = () => {
   const [uploadedFiles, setUploadedFiles] = useState<FileProps[]>([]);
   const history = useHistory();
+  const { addToast } = useToast()
 
   async function handleUpload(): Promise<void> {
     try {
+      if (!Boolean(uploadedFiles.length)) {
+        addToast({
+          type: 'info',
+          title: 'Atenção',
+          description: "Adicione o arquivo para iniciar o processamento."
+        });
+        return
+      }
+
       await Promise.all(
         uploadedFiles.map(file => {
           const data = new FormData();
